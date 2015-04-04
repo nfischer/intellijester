@@ -41,6 +41,32 @@ joke (or simply hitting enter)   Tell a joke
     print HELP_MSG
     return
 
+class JokeBag:
+    def __init__(self):
+        self.cat_map = { }
+
+    def add_joke(self, joke):
+        text = joke["joke"]
+        cat = joke["category"]
+
+        if len(text) > 350:
+            print "Joke too long!" # DEBUG
+            return # This joke is too long
+        if cat not in self.cat_map:
+            # This key is not already in here
+            self.cat_map[cat] = list()
+        # append the joke body to the list of jokes
+        # print type(self.cat_map)
+        # print type(self.cat_map[cat])
+        self.cat_map[cat].append(text)
+
+    def retrieve_joke(self, cat):
+        if cat not in self.cat_map or len(self.cat_map[cat]) == 0:
+            # Asked for invalid joke category
+            raise Exception("We don't have any room")
+        else:
+            return self.cat_map[cat].pop()
+
 def print_joke(j):
     # Check if there's a title, and print it if there is
     if "title" in j:
@@ -57,6 +83,7 @@ def print_joke(j):
     return
 
 def main():
+    joke_bag = JokeBag()
     try:
         while 1:
             text = raw_input("\nPress enter to see a joke, q to quit: ")
@@ -72,10 +99,16 @@ def main():
                 usage()
             elif matches(key,"clear") or key == "cls":
                 os.system('clear')
+            elif matches(key,"keys"):
+                print joke_bag.cat_map.keys()
             else:
                 try:
                     j = api.get_joke()
-                    print_joke(j)
+                    my_cat = j["category"]
+                    joke_bag.add_joke(j)
+                    j = joke_bag.retrieve_joke(my_cat)
+                    # print_joke(j) # only if j is an object
+                    print j
                 except Exception as e:
                     print str(e)
     except:
