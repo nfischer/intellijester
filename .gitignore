@@ -1,0 +1,7 @@
+# Vim files
+
+*.swp
+*.swo
+*~
+
+*.txt
