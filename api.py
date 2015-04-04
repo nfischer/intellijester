@@ -4,7 +4,7 @@
 
 import unirest
 
-def get_joke():
+def get_rand_joke():
     response = unirest.get("https://webknox-jokes.p.mashape.com/jokes/random", headers={"X-Mashape-Key": "Dv7dJmG74lmshSyC5z2CezBN0A1Xp1OpexHjsnJDI2yWrnmYhS", "Accept": "application/json"})
 
     if response.code != 200:
@@ -23,6 +23,8 @@ def print_joke(j):
 
     print j["joke"]
 
+# Call the api a few times. This is only for testing purposes, and should
+# not be executed normally
 if __name__ == "__main__":
     #for k in range(0, 8):
     joke = get_joke()

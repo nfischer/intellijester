@@ -1,10 +1,16 @@
 #!/usr/bin/python
 
-# Commandline interface for intellijester
+"""
+Commandline interface for intellijester
+
+This file should only contain code for the command line interface. All code
+necessary to base functionality should be in external files.
+"""
 
 import os
 import sys
 import api
+from JokeBag import JokeBag
 
 ## Takes two strings and returns True if one is a substring of the other
 ## and begins at the first character of the string.
@@ -40,32 +46,6 @@ joke (or simply hitting enter)   Tell a joke
 """
     print HELP_MSG
     return
-
-class JokeBag:
-    def __init__(self):
-        self.cat_map = { }
-
-    def add_joke(self, joke):
-        text = joke["joke"]
-        cat = joke["category"]
-
-        if len(text) > 350:
-            print "Joke too long!" # DEBUG
-            return # This joke is too long
-        if cat not in self.cat_map:
-            # This key is not already in here
-            self.cat_map[cat] = list()
-        # append the joke body to the list of jokes
-        # print type(self.cat_map)
-        # print type(self.cat_map[cat])
-        self.cat_map[cat].append(text)
-
-    def retrieve_joke(self, cat):
-        if cat not in self.cat_map or len(self.cat_map[cat]) == 0:
-            # Asked for invalid joke category
-            raise Exception("We don't have any room")
-        else:
-            return self.cat_map[cat].pop()
 
 def print_joke(j):
     # Check if there's a title, and print it if there is
@@ -103,7 +83,7 @@ def main():
                 print joke_bag.cat_map.keys()
             else:
                 try:
-                    j = api.get_joke()
+                    j = api.get_rand_joke()
                     my_cat = j["category"]
                     joke_bag.add_joke(j)
                     j = joke_bag.retrieve_joke(my_cat)
