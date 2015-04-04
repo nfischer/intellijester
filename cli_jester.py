@@ -10,7 +10,7 @@ necessary to base functionality should be in external files.
 import os
 import sys
 import api
-from JokeBag import JokeBag
+from JokeBag import JokeBag, JokeTooLong
 
 ## Takes two strings and returns True if one is a substring of the other
 ## and begins at the first character of the string.
@@ -82,15 +82,19 @@ def main():
             elif matches(key,"keys"):
                 print joke_bag.cat_map.keys()
             else:
-                try:
-                    j = api.get_rand_joke()
-                    my_cat = j["category"]
-                    joke_bag.add_joke(j)
-                    j = joke_bag.retrieve_joke(my_cat)
-                    # print_joke(j) # only if j is an object
-                    print j
-                except Exception as e:
-                    print str(e)
+                while True:
+                    try:
+                        j = api.get_rand_joke()
+                        my_cat = j["category"]
+                        joke_bag.add_joke(j)
+                        j = joke_bag.retrieve_joke(my_cat)
+                        # print_joke(j) # only if j is an object
+                        print j
+                        break
+                    except JokeTooLong as e:
+                        continue # Try again!
+                    except Exception as e:
+                        print str(e)
     except:
         exit(0)
 
