@@ -17,20 +17,10 @@ You'll need to have the following python modules installed:
  - gi
  - pyglet
 
-You can install these with pip as follows:
+The recommended installation method is to use the installation script:
 
 ```Bash
-$ sudo pip install unirest gi pyglet
-```
-
-If you need to install pip, try these steps:
-
-```Bash
-# Linux
-$ sudo apt-get install python-pip
-
-# Mac
-$ sudo easy_install pip
+$ sudo ./install.sh
 ```
 
 ### Emotiv
