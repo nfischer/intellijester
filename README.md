@@ -31,4 +31,11 @@ $ sudo apt-get install python-pip
 $ sudo easy_install pip
 ```
 
+To run the EEG files, you must have maven installed. You can download it here: https://maven.apache.org/download.cgi. Make sure to export it to your path as well. You can verify this step by typing mvn --version.
 
+Navigate into the ee branch and install and run using these steps:
+
+```Bash
+$ mvn install
+$ java -jar target/intelligester-1.0.jar
+```
