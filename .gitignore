@@ -7,4 +7,10 @@
 *.txt
 *.pdf
 
+# Python
 *.pyc
+
+# Java
+*.class
+*.lst
+*.jar
