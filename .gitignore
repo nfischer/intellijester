@@ -1,0 +1,10 @@
+# Vim files
+
+*.swp
+*.swo
+*~
+
+*.txt
+*.pdf
+
+*.pyc
