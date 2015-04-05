@@ -4,6 +4,9 @@
 *.swo
 *~
 
+# Mac
+*.DS_Store
+
 *.txt
 *.pdf
 

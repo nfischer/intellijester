@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 import sys
 from functools import partial
 
-EXECUTE_JAR = "java -jar target/intelligester-1.0.jar"
+EXECUTE_JAR = "java -jar eeg/target/intelligester-1.0.jar"
 # EXECUTE_JAR = "./outputBStream" # for testing only
 
 class EEG:
