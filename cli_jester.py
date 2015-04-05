@@ -91,7 +91,7 @@ def main():
                         for j in j_list:
                             my_cat = j["category"] # This guy
                             joke_bag.add_joke(j)
-                            my_cat = "sex"
+                            my_cat = joke_bag.get_next_cat()
                             j = joke_bag.retrieve_joke(my_cat)
                             # print_joke(j) # Don't use this line if j is a string
                             print j
@@ -99,7 +99,7 @@ def main():
                     except JokeTooLong as e:
                         continue # Try again!
                     except Exception as e:
-                        print str(e)
+                        print "Error:", str(e)
     except:
         exit(0)
 
