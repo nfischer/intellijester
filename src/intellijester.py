@@ -13,7 +13,10 @@ import Screen1
 import Screen2
 from JokeBag import JokeBag, JokeTooLong
 from eeg import EEG
+UNICODE_APOST = u"\u2019"
     
+def is_ascii(s):
+    return all(ord(c) < 128 for c in s)
 
 class Screen1Main(QtGui.QMainWindow, Screen1.Ui_MainWindow):
     """ The second parent must be 'Ui_<obj. name of main widget class>'.
@@ -49,6 +52,10 @@ class Screen2Main(QtGui.QMainWindow, Screen2.Ui_MainWindow):
         while True:
             try:
                 cat, joke = joke_bag.get_joke_wrapper()
+                if not is_ascii(joke):
+                    joke = joke.replace(UNICODE_APOST, "'")
+                    if not is_ascii(joke):
+                        continue
                 break
             except JokeTooLong as e:
                 continue
