@@ -66,7 +66,8 @@ def print_joke(j):
 
 def main(joke_bag, eeg):
     try:
-        while 1:
+        prev_cat = ""
+        while True:
             text = raw_input("\nPress enter to see a joke, q to quit: ")
             key_list = []
             key = ""
@@ -92,13 +93,15 @@ def main(joke_bag, eeg):
                         j_text = joke_bag.retrieve_joke(next_cat)
                         print j_text
                         # assume every joke goes over well
-                        val = -1
-                        if eeg.user_likes_joke():
-                            print "He likes it!"
-                            val = 1
-                        else:
-                            print "He doesn't like it"
-                        joke_bag.change_score(next_cat, val)
+                        if prev_cat != "":
+                            val = -1
+                            if eeg.user_likes_joke():
+                                print "He likes it!"
+                                val = 1
+                            else:
+                                print "He doesn't like it"
+                            joke_bag.change_score(prev_cat, val)
+                        prev_cat = next_cat
                         break
                     except JokeTooLong as e:
                         continue # Try again!

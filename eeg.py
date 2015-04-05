@@ -3,11 +3,13 @@ Python class to interface with the EEG and receive a value stream
 """
 
 from subprocess import Popen, PIPE
-import sys
 from functools import partial
+import sys
 
-EXECUTE_JAR = "java -jar eeg/target/intelligester-1.0.jar"
-# EXECUTE_JAR = "./outputBStream" # for testing only
+if sys.platform[:5] == "linux":
+    EXECUTE_JAR = "./outputBStream" # since Linux can't run the real jar file
+else:
+    EXECUTE_JAR = "java -jar eeg/target/intelligester-1.0.jar"
 
 class EEG:
     def __init__(self):
