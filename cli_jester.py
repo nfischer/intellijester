@@ -86,20 +86,19 @@ def main():
             else:
                 while True:
                     try:
-                        # j = api.get_rand_joke()
-                        j_list = api.get_joke_type("chuck norris", 1, "the")
-                        for j in j_list:
-                            my_cat = j["category"] # This guy
-                            joke_bag.add_joke(j)
-                            my_cat = joke_bag.get_next_cat()
-                            j = joke_bag.retrieve_joke(my_cat)
-                            # print_joke(j) # Don't use this line if j is a string
-                            print j
+                        j = api.get_rand_joke()
+                        my_cat = j["category"]
+                        joke_bag.add_joke(j)
+                        next_cat = joke_bag.get_next_cat()
+                        j_text = joke_bag.retrieve_joke(next_cat)
+                        print j_text
+                        # assume every joke goes over well
+                        joke_bag.change_score(next_cat, 1)
                         break
                     except JokeTooLong as e:
                         continue # Try again!
                     except Exception as e:
-                        print "Error:", str(e)
+                        print "Error:", e
     except:
         exit(0)
 
