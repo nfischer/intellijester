@@ -19,14 +19,14 @@ def getJokes():
                     "Accept": "application/json"
                     }
                 )
-        
+
 
         try:
             print response.body
             encode = urllib.urlencode({"q":response.body["joke"]})
             result = pool.apply(getMP3,"http://tts-api.com/tts.mp3?"+encode,mp3done)
 
-           
+
             try:
                 stats[response.body["category"]] += 1
             except KeyError:
@@ -34,7 +34,7 @@ def getJokes():
                     stats[response.body["category"]] = 1
                 except KeyError:
                     print "KeyError"
-            
+
         except UnicodeEncodeError:
             print "Unicode issue"
 

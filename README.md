@@ -13,12 +13,12 @@ You'll need to have the following python modules installed:
 
  - unirest
  - gi
+ - pyglet
 
 You can install these with pip as follows:
 
 ```Bash
-$ sudo pip install unirest
-$ sudo pip install gi
+$ sudo pip install unirest gi pyglet
 ```
 
 If you need to install pip, try these steps:
