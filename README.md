@@ -5,13 +5,6 @@ tailor the jokes it tells you to your individual sense of humor. It uses the
 EEG to detect which jokes you find funnier or less funny and uses machine
 learning to judge which categories of jokes you prefer.
 
-Installation---Joraaver
------------------------
-
-1) Install Control Panel
-Found on https://emotiv.com/store/product_72.html
-
-
 Installation
 ------------
 
