@@ -14,7 +14,12 @@ import Screen2
 from JokeBag import JokeBag, JokeTooLong
 from eeg import EEG
 UNICODE_APOST = u"\u2019"
-    
+
+def killProgram():
+    # kill the subprocess
+    eeg.kill_process()
+    os._exit(0)
+
 def is_ascii(s):
     return all(ord(c) < 128 for c in s)
 
@@ -29,7 +34,7 @@ class Screen1Main(QtGui.QMainWindow, Screen1.Ui_MainWindow):
         # call the parent's constructor.
         self.setupUi(self)
         # Pass this "self" for building widgets and
-        # keeping a reference.  
+        # keeping a reference.
         self.pushButton.clicked.connect(self.handleButton)
         self.window2 = None
 
@@ -127,5 +132,5 @@ def changeImage(happy):
         print app.activeWindow()
     else:
         print "NOT"
-    
-        
+
+
