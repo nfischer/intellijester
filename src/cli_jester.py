@@ -16,6 +16,8 @@ import mp3
 from JokeBag import JokeBag, JokeTooLong
 from eeg import EEG
 
+UNICODE_APOST = u"\u2019"
+
 global eeg
 
 def killProgram():
@@ -73,6 +75,9 @@ def print_joke(j):
 
     return
 
+def is_ascii(s):
+    return all(ord(c) < 128 for c in s)
+
 def main(joke_bag):
     global eeg
     try:
@@ -100,13 +105,18 @@ def main(joke_bag):
                         # next_cat = joke_bag.get_next_cat()
                         # j_text = joke_bag.retrieve_joke(next_cat)
                         next_cat, j_text = joke_bag.get_joke_wrapper()
-                        j_text = j_text.encode('ascii', 'strict')
+                        # j_text = j_text.encode('ascii', 'strict')
                         # Check for ascii
-                        try:
-                            j_text.decode('ascii')
-                        except UnicodeDecodeError:
-                            print "Not ascii: " % j_text[0:20]
-                            continue # This is a non-ascii string
+                        if not is_ascii(j_text):
+                            j_text = j_text.replace(UNICODE_APOST, "'")
+                            if not is_ascii(j_text):
+                                continue
+                        # try:
+                        #     j_text.decode('ascii')
+                        # except UnicodeDecodeError:
+                        #     print "Not ascii: " % j_text[0:20]
+                        #     continue # This is a non-ascii string
+
                         print j_text
 
                         # print "Pulling mp3"
