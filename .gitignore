@@ -21,3 +21,6 @@
 # For test output stream in C
 outputBStream
 bstream.c
+
+# Ignore sound files
+*.mp3

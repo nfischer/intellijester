@@ -68,7 +68,6 @@ def print_joke(j):
 
 def main(joke_bag, eeg):
     try:
-        prev_cat = ""
         while True:
             text = raw_input("\nPress enter to see a joke, q to quit: ")
             key_list = []
@@ -88,12 +87,12 @@ def main(joke_bag, eeg):
             else:
                 while True:
                     try:
-                        j = api.get_rand_joke()
-                        # my_cat = j["category"]
-                        joke_bag.add_joke(j)
-                        next_cat = joke_bag.get_next_cat()
-                        j_text = joke_bag.retrieve_joke(next_cat)
-                        # j_text = j_text.encode('ascii', 'strict')
+                        # j = api.get_rand_joke()
+                        # joke_bag.add_joke(j)
+                        # next_cat = joke_bag.get_next_cat()
+                        # j_text = joke_bag.retrieve_joke(next_cat)
+                        next_cat, j_text = joke_bag.get_joke_wrapper()
+                        j_text = j_text.encode('ascii', 'strict')
                         # Check for ascii
                         try:
                             j_text.decode('ascii')
@@ -101,29 +100,38 @@ def main(joke_bag, eeg):
                             print "Not ascii: " % j_text[0:20]
                             continue # This is a non-ascii string
                         print j_text
-                        if prev_cat != "":
-                            val = -1
-                            if eeg.user_likes_joke():
-                                print "He likes it!"
-                                val = 1
-                            else:
-                                print "He doesn't like it"
-                            joke_bag.change_score(prev_cat, val)
-                        prev_cat = next_cat
+
+                        # print "Pulling mp3"
+                        # mp3.getMp3(j_text)
+                        # print "got mp3"
+                        # mp3.playMp3()
+                        # print "Played mp3"
+                        # mp3.unlinkMp3()
+                        # print "Cleaned up"
 
                         # Play mp3
-                        print "Pulling mp3"
-                        mp3.getMp3(j_text)
-                        print "got mp3"
-                        mp3.playMp3()
-                        print "Played mp3"
-                        mp3.unlinkMp3()
-                        print "Cleaned up"
+                        mp3.read_joke(j_text)
+
+                        # Get user rating
+                        val = -1
+                        if eeg.user_likes_joke():
+                            print "He likes it!"
+                            val = 1
+                        else:
+                            print "He doesn't like it"
+                        joke_bag.change_score(next_cat, val)
+                        break
+                    except KeyError as e:
+                        print str(e)
                         break
                     except JokeTooLong as e:
                         continue # Try again!
+                    except UnicodeEncodeError as e:
+                        print "<%s>" % j_text
+                        continue # This was a bad string
                     except Exception as e:
-                        print "Error:", e
+                        print "Error:", type(e), e
+                        break
     except:
         try:
             eeg.kill_process()

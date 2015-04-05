@@ -19,7 +19,7 @@ URL_BASE = "http://tts-api.com/tts.mp3?"
 def getMp3(input_text):
     encode = urllib.urlencode({"q":input_text})
     req = urllib2.Request(URL_BASE + encode)
-    audio = urllib2.urlopen(req)
+    audio = urllib2.urlopen(req) # This line has the most latency
     data = audio.read()
 
     with open(MP3_FILE_NAME,"wb") as f:
@@ -36,15 +36,18 @@ def exiter(dt):
 def playMp3():
     sound = pyglet.resource.media(MP3_FILE_NAME, streaming=False)
     sound.play()
-    pyglet.clock.schedule_once(exiter, sound.duration)
+    pyglet.clock.schedule_once(exiter, sound.duration+1)
     pyglet.app.run()
 
     print "Finished" # DEBUG
     return
 
-## Converts all bad characters into suitable alternatives in the string s
-## @returns a properly formatted string
-
+## Wrapper that encapsulates all these methods
+def read_joke(input_text):
+    getMp3(input_text)
+    playMp3()
+    unlinkMp3()
+    return
 
 if __name__ == '__main__':
     getMp3("Hello world")
