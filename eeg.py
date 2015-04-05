@@ -30,6 +30,6 @@ class EEG:
         return (self.val == 1) # must be read-only
 
     def kill_process(self):
-        self.p.stdout.close()
+        # self.p.stdout.close()
         self.p.kill()
 

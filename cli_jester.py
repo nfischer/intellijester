@@ -16,6 +16,13 @@ import mp3
 from JokeBag import JokeBag, JokeTooLong
 from eeg import EEG
 
+global eeg
+
+def killProgram():
+    # kill the subprocess
+    eeg.kill_process()
+    os._exit(0)
+
 ## Takes two strings and returns True if one is a substring of the other
 ## and begins at the first character of the string.
 def matches(a, b):
@@ -66,7 +73,8 @@ def print_joke(j):
 
     return
 
-def main(joke_bag, eeg):
+def main(joke_bag):
+    global eeg
     try:
         while True:
             text = raw_input("\nPress enter to see a joke, q to quit: ")
@@ -77,7 +85,7 @@ def main(joke_bag, eeg):
                 key = key_list[0]
 
             if matches(key,"quit") or key == "Q" or key == ";q" or key == "exit":
-                os._exit(0)
+                killProgram()
             elif matches(key,"help") or key == "--help":
                 usage()
             elif matches(key,"clear") or key == "cls":
@@ -135,9 +143,9 @@ def main(joke_bag, eeg):
     except:
         try:
             eeg.kill_process()
-            os._exit(0)
+            killProgram()
         except:
-            os._exit(0)
+            killProgram()
 
 
 if __name__ == "__main__":
@@ -146,6 +154,7 @@ if __name__ == "__main__":
             usage()
             exit(0)
 
+    global eeg
     # execute the main function now
     print "Initializing jokebag"
     joke_bag = JokeBag()
@@ -155,7 +164,7 @@ if __name__ == "__main__":
 
     my_threads = list()
     my_threads.append(threading.Thread(target=eeg.listen_to_process) )
-    my_threads.append(threading.Thread(target=main, args=(joke_bag, eeg,) ) )
+    my_threads.append(threading.Thread(target=main, args=(joke_bag,) ) )
     my_threads[0].daemon = True # run this thread in the background
     my_threads[1].daemon = False
     my_threads[0].start()
@@ -166,4 +175,4 @@ if __name__ == "__main__":
             while t.isAlive():
                 t.join(1)
     except:
-        os._exit(0)
+        killProgram()
