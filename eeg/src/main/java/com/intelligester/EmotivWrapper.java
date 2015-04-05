@@ -16,7 +16,7 @@ public class EmotivWrapper {
     static int state    	    	= 0;
     static int startindex           = 30; // adjust these values if you wish
     static int endindex             = 60;
-    static double thresholdamt      = 0.40;
+    static double thresholdamt      = 0.20;
 
     public static void connect() {
         userID = new IntByReference(0);
@@ -59,6 +59,8 @@ public class EmotivWrapper {
         double baseval = 0.0;
         double ub = 0.0;
         double lb = 0.0;
+        int onecount = 0;
+        double previous = 0.0;
 		while (true)
 		{
 			state = Edk.INSTANCE.EE_EngineGetNextEvent(eEvent);
@@ -106,13 +108,22 @@ public class EmotivWrapper {
                                     if(deviation > thresholdamt) {
                                         log.write(Integer.toString(1));
                                         log.flush();
+                                        onecount++;
+                                        if(onecount >= 10) {
+                                            baseval = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
+                                            onecount = 0;
+                                        }
                                     }
                                     else {
                                         log.write(Integer.toString(0));
                                         log.flush();
+                                        if(previous > EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState)) {
+                                            baseval = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
+                                        }
                                     }
                                     counter = 0;
                             }
+                            previous = EmoState.INSTANCE.ES_AffectivGetExcitementShortTermScore(eState);
                         }
                         catch (Exception e) {
                                 e.printStackTrace();
