@@ -15,8 +15,10 @@ You'll need to have the following python modules installed:
  - unirest
  - gi
  - pyglet
+ - qt4
 
-The recommended installation method is to use the installation script:
+The recommended installation method is to use the installation script.
+Details of installation methods can be found within the script.
 
 ```Bash
 $ sudo ./install.sh
@@ -24,7 +26,8 @@ $ sudo ./install.sh
 
 ### Audio
 
-You will also need to install AVbin from `https://avbin.github.io/AVbin/Download.html`
+You will also need to install AVbin from
+`https://avbin.github.io/AVbin/Download.html`
 
 ### Emotiv
 
