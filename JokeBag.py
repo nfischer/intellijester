@@ -30,12 +30,9 @@ class JokeBag:
                 for j in j_list:
                     self.cat_map[k].add(j["joke"])
 
-        # count = 0 # DEBUG
         for k in self.cat_map.keys():
-            # self.score_map[k] = count # initialize all scores
             self.score_map[k] = INITIAL_SCORE # initialize all scores
-            print k
-            # count = count + 1
+            # print k
 
     ## This adds a single joke to the category
     ## @param joke: json dict object
@@ -96,5 +93,5 @@ class JokeBag:
     ## Does not catch exceptions if the category passed in is invalid
     def change_score(self, cat, amt):
         self.score_map[cat] = self.score_map[cat] + amt # could be negative
-        print self.score_map[cat]
+        # print self.score_map[cat]
 
