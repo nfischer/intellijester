@@ -5,9 +5,9 @@ Python class to store jokes according to categories
 import api
 
 # Constants
-LENGTH_THRESHOLD = 350
+LENGTH_THRESHOLD = 250
 STARTING_COUNT = 10         # This maxes at 10
-STARTING_KEYS = ["sex", "chuck norris"]
+STARTING_KEYS = ["sex", "chuck norris", "ethnic", "work"]
 INITIAL_SCORE = 5
 NUM_COMMON_WORDS = 1 # DEBUG, should be higher
 

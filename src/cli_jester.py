@@ -167,8 +167,8 @@ if __name__ == "__main__":
     global eeg
     # execute the main function now
     print "Initializing jokebag"
-    joke_bag = JokeBag()
     eeg = EEG()
+    joke_bag = JokeBag()
     print "Finished initialization"
 
 
