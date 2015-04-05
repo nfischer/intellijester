@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.label_2.setMinimumSize(QtCore.QSize(100, 100))
         self.label_2.setMaximumSize(QtCore.QSize(547, 16777215))
         self.label_2.setText(_fromUtf8(""))
-        self.label_2.setPixmap(QtGui.QPixmap(_fromUtf8("assets/NeutralFaceSmall.png")))
+        self.label_2.setPixmap(QtGui.QPixmap(_fromUtf8("../assets/NeutralFaceSmall.png")))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.horizontalLayout_2.addWidget(self.label_2)
         self.verticalLayout_6 = QtGui.QVBoxLayout()

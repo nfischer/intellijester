@@ -7,7 +7,7 @@ from functools import partial
 import sys
 
 if sys.platform[:5] == "linux":
-    EXECUTE_JAR = "./outputBStream" # since Linux can't run the real jar file
+    EXECUTE_JAR = "../outputBStream" # since Linux can't run the real jar file
 else:
     EXECUTE_JAR = "java -jar eeg/target/intelligester-1.0.jar"
 
@@ -30,6 +30,6 @@ class EEG:
         return (self.val == 1) # must be read-only
 
     def kill_process(self):
-        self.p.stdout.close()
+        # self.p.stdout.close()
         self.p.kill()
 

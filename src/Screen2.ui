@@ -62,7 +62,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap>assets/NeutralFaceSmall.png</pixmap>
+             <pixmap>../assets/NeutralFaceSmall.png</pixmap>
             </property>
            </widget>
           </item>

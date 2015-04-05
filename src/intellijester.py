@@ -1,6 +1,5 @@
-
 #!/usr/bin/python
- 
+
 from PyQt4 import QtGui, QtCore
 import sys
 
@@ -22,14 +21,14 @@ class Screen1Main(QtGui.QMainWindow, Screen1.Ui_MainWindow):
         # keeping a reference.
         self.pushButton.clicked.connect(self.handleButton)
         self.window2 = None
-        
+
 
     def main(self):
         self.show()
-        
+
 
     def handleButton(self):
-         
+
         self.window2 = Screen2Main(self)
         self.window2.show()
 
@@ -42,7 +41,7 @@ class Screen2Main(QtGui.QMainWindow, Screen2.Ui_MainWindow):
 
 
     def handleButton(self):
-         
+
         self.window1 = Screen1Main(self)
         self.window1.show()
 
