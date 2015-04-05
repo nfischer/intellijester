@@ -2,8 +2,12 @@
 Python class to store jokes according to categories
 """
 
+import api
+
 # Constants
 LENGTH_THRESHOLD = 350
+STARTING_COUNT = 10
+STARTING_KEYS = ["sex", "criminal"]
 
 # Custom exception thrown if joke is too lengthy
 class JokeTooLong(Exception):
@@ -14,6 +18,19 @@ class JokeBag:
     def __init__(self):
         self.cat_map = { }
 
+        # Populate the map with initial values
+        for k in STARTING_KEYS:
+            self.cat_map[k] = set()
+            for cw in api.COMMON_ENG_WORDS[:4]:
+                j_list = api.get_joke_type(k, STARTING_COUNT, cw)
+                # print cw
+                for j in j_list:
+                    self.cat_map[k].add(j["joke"])
+                    # print j["joke"][:80]
+                    # count = count + 1
+                # print count
+            # print len(self.cat_map[k]), count, anticount
+
     def add_joke(self, joke):
         text = joke["joke"]
         cat = joke["category"]
@@ -22,11 +39,9 @@ class JokeBag:
             raise JokeTooLong("Length exceeds threshold")
         if cat not in self.cat_map:
             # This key is not already in here
-            self.cat_map[cat] = list()
-        # append the joke body to the list of jokes
-        # print type(self.cat_map)
-        # print type(self.cat_map[cat])
-        self.cat_map[cat].append(text)
+            self.cat_map[cat] = set()
+        # add the joke body to the set of jokes
+        self.cat_map[cat].add(text)
 
     def retrieve_joke(self, cat):
         if cat not in self.cat_map or len(self.cat_map[cat]) == 0:

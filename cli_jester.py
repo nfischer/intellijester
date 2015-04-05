@@ -63,7 +63,9 @@ def print_joke(j):
     return
 
 def main():
+    print "Initializing jokebag"
     joke_bag = JokeBag()
+    print "Finished initialization"
     try:
         while 1:
             text = raw_input("\nPress enter to see a joke, q to quit: ")
@@ -84,12 +86,15 @@ def main():
             else:
                 while True:
                     try:
-                        j = api.get_rand_joke()
-                        my_cat = j["category"]
-                        joke_bag.add_joke(j)
-                        j = joke_bag.retrieve_joke(my_cat)
-                        # print_joke(j) # only if j is an object
-                        print j
+                        # j = api.get_rand_joke()
+                        j_list = api.get_joke_type("chuck norris", 1, "the")
+                        for j in j_list:
+                            my_cat = j["category"] # This guy
+                            joke_bag.add_joke(j)
+                            my_cat = "sex"
+                            j = joke_bag.retrieve_joke(my_cat)
+                            # print_joke(j) # Don't use this line if j is a string
+                            print j
                         break
                     except JokeTooLong as e:
                         continue # Try again!
