@@ -14,7 +14,9 @@ import threading
 
 import mp3
 from JokeBag import JokeBag, JokeTooLong
+
 from eeg import EEG
+import intellijester
 
 global eeg
 
@@ -127,6 +129,7 @@ def main(joke_bag):
                             val = 1
                         else:
                             print "He doesn't like it"
+                        intellijester.changeImage(val)
                         joke_bag.change_score(next_cat, val)
                         break
                     except KeyError as e:
