@@ -7,4 +7,14 @@
 *.txt
 *.pdf
 
+# Python
 *.pyc
+
+# Java
+*.class
+*.lst
+*.jar
+
+# For test output stream in C
+outputBStream
+bstream.c
