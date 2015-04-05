@@ -11,6 +11,7 @@ import os
 import sys
 import api
 import threading
+import time
 
 import mp3
 from JokeBag import JokeBag, JokeTooLong
@@ -84,12 +85,12 @@ def main(joke_bag):
     global eeg
     try:
         while True:
-            text = raw_input("\nPress enter to see a joke, q to quit: ")
+            # text = raw_input("\nPress enter to see a joke, q to quit: ")
             key_list = []
             key = ""
-            if text != "":
-                key_list = text.split()
-                key = key_list[0]
+            # if text != "":
+            #     key_list = text.split()
+            #     key = key_list[0]
 
             if matches(key,"quit") or key == "Q" or key == ";q" or key == "exit":
                 killProgram()
@@ -119,6 +120,7 @@ def main(joke_bag):
                         #     print "Not ascii: " % j_text[0:20]
                         #     continue # This is a non-ascii string
 
+                        os.system('clear')
                         print j_text
 
                         # print "Pulling mp3"
@@ -135,11 +137,12 @@ def main(joke_bag):
                         # Get user rating
                         val = -1
                         if eeg.user_likes_joke():
-                            print "He likes it!"
+                            print "\nTwo thumbs up!"
                             val = 1
                         else:
-                            print "He doesn't like it"
-                        intellijester.changeImage(val)
+                            print "\nNot so funny"
+                        # intellijester.changeImage(val)
+                        time.sleep(1)
                         joke_bag.change_score(next_cat, val)
                         break
                     except KeyError as e:
@@ -169,10 +172,10 @@ if __name__ == "__main__":
 
     global eeg
     # execute the main function now
-    print "Initializing jokebag"
+    print "Initializing starting variables"
     eeg = EEG()
     joke_bag = JokeBag()
-    print "Finished initialization"
+    # print "Finished initialization"
 
 
     my_threads = list()
