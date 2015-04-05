@@ -10,9 +10,11 @@ necessary to base functionality should be in external files.
 import os
 import sys
 import api
+import threading
+
+import mp3
 from JokeBag import JokeBag, JokeTooLong
 from eeg import EEG
-import threading
 
 ## Takes two strings and returns True if one is a substring of the other
 ## and begins at the first character of the string.
@@ -87,12 +89,18 @@ def main(joke_bag, eeg):
                 while True:
                     try:
                         j = api.get_rand_joke()
-                        my_cat = j["category"]
+                        # my_cat = j["category"]
                         joke_bag.add_joke(j)
                         next_cat = joke_bag.get_next_cat()
                         j_text = joke_bag.retrieve_joke(next_cat)
+                        # j_text = j_text.encode('ascii', 'strict')
+                        # Check for ascii
+                        try:
+                            j_text.decode('ascii')
+                        except UnicodeDecodeError:
+                            print "Not ascii: " % j_text[0:20]
+                            continue # This is a non-ascii string
                         print j_text
-                        # assume every joke goes over well
                         if prev_cat != "":
                             val = -1
                             if eeg.user_likes_joke():
@@ -102,6 +110,15 @@ def main(joke_bag, eeg):
                                 print "He doesn't like it"
                             joke_bag.change_score(prev_cat, val)
                         prev_cat = next_cat
+
+                        # Play mp3
+                        print "Pulling mp3"
+                        mp3.getMp3(j_text)
+                        print "got mp3"
+                        mp3.playMp3()
+                        print "Played mp3"
+                        mp3.unlinkMp3()
+                        print "Cleaned up"
                         break
                     except JokeTooLong as e:
                         continue # Try again!

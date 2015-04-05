@@ -23,6 +23,10 @@ The recommended installation method is to use the installation script:
 $ sudo ./install.sh
 ```
 
+### Audio
+
+You will also need to install AVbin from `https://avbin.github.io/AVbin/Download.html`
+
 ### Emotiv
 
 You will need to download the control panel in order to interface with the
