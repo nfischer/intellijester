@@ -37,7 +37,7 @@
       </property>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="label">
           <property name="font">
            <font>
@@ -124,6 +124,23 @@ border-radius:5;</string>
         </property>
        </spacer>
       </item>
+      <item alignment="Qt::AlignRight">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 0, 0);
+background-color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string>X</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
    </layout>
@@ -151,6 +168,22 @@ border-radius:5;</string>
     <hint type="sourcelabel">
      <x>387</x>
      <y>456</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>387</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>728</x>
+     <y>604</y>
     </hint>
     <hint type="destinationlabel">
      <x>387</x>

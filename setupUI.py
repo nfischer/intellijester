@@ -39,6 +39,8 @@ class Screen2Main(QtGui.QMainWindow, Screen2.Ui_MainWindow):
         super(Screen2Main,self).__init__(parent)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.handleButton)
+
+
     def handleButton(self):
          
         self.window1 = Screen1Main(self)

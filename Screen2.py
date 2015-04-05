@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Screen2.ui'
 #
-# Created: Sun Apr  5 07:14:41 2015
+# Created: Sun Apr  5 08:50:01 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.showFullScreen();
+        MainWindow.showFullScreen()
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setStyleSheet(_fromUtf8("background-color: rgb(0, 0, 0);"))
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -61,6 +61,18 @@ class Ui_MainWindow(object):
         self.label_2.setPixmap(QtGui.QPixmap(_fromUtf8("assets/NeutralFaceSmall.png")))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.horizontalLayout_2.addWidget(self.label_2)
+        self.verticalLayout_6 = QtGui.QVBoxLayout()
+        self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
+        self.pushButton_2 = QtGui.QPushButton(self.centralwidget)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy)
+        self.pushButton_2.setStyleSheet(_fromUtf8("color: rgb(255, 0, 0);\n"
+"background-color: rgb(0, 0, 0);"))
+        self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        self.verticalLayout_6.addWidget(self.pushButton_2)
         self.label = QtGui.QLabel(self.centralwidget)
         self.label.setMinimumSize(QtCore.QSize(0, 100))
         font = QtGui.QFont()
@@ -69,14 +81,14 @@ class Ui_MainWindow(object):
         self.label.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.label.setObjectName(_fromUtf8("label"))
-        self.horizontalLayout_2.addWidget(self.label)
+        self.verticalLayout_6.addWidget(self.label)
+        self.horizontalLayout_2.addLayout(self.verticalLayout_6)
         self.verticalLayout_4.addLayout(self.horizontalLayout_2)
-        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Minimum)
+        spacerItem = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         self.verticalLayout_4.addItem(spacerItem)
         self.horizontalLayout_4 = QtGui.QHBoxLayout()
         self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
         self.textBrowser = QtGui.QTextBrowser(self.centralwidget)
-        self.textBrowser.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.textBrowser.setObjectName(_fromUtf8("textBrowser"))
         self.horizontalLayout_4.addWidget(self.textBrowser)
         self.pushButton = QtGui.QPushButton(self.centralwidget)
@@ -119,10 +131,12 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), MainWindow.close)
+        QtCore.QObject.connect(self.pushButton_2, QtCore.SIGNAL(_fromUtf8("clicked()")), MainWindow.close)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
+        self.pushButton_2.setText(_translate("MainWindow", "X", None))
         self.label.setText(_translate("MainWindow", "Intellijester", None))
         self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
