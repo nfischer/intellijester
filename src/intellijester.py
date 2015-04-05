@@ -39,8 +39,6 @@ class Screen1Main(QtGui.QMainWindow, Screen1.Ui_MainWindow):
 
         self.window2 = Screen2Main(self)
         self.window2.show()
-        joke = joke_bag.get_joke_wrapper()
-        print joke
 
 
 class Screen2Main(QtGui.QMainWindow, Screen2.Ui_MainWindow):
@@ -48,9 +46,16 @@ class Screen2Main(QtGui.QMainWindow, Screen2.Ui_MainWindow):
         super(Screen2Main,self).__init__(parent)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.handleButton)
+        while True:
+            try:
+                cat, joke = joke_bag.get_joke_wrapper()
+                break
+            except JokeTooLong as e:
+                continue
+        a = "CHECK"
         q = QtCore.QString(joke)
-        self.textBrowser.setPlainText(q)
-        #mp3.read_joke(joke)
+        self.textBrowser.setHtml(q)
+        mp3.read_joke(joke)
         # Get user rating
         #val = -1
         #if eeg.user_likes_joke():
