@@ -38,7 +38,10 @@ class JokeBag:
     ## @param joke: json dict object
     def add_joke(self, joke):
         text = joke["joke"]
-        cat = joke["category"].lower()
+        try:
+            cat = joke["category"].lower()
+        except:
+            cat = "misc"
 
         if len(text) > LENGTH_THRESHOLD:
             raise JokeTooLong("Length exceeds threshold")
@@ -69,6 +72,13 @@ class JokeBag:
             return -1
         else:
             return 0
+
+    def get_joke_wrapper(self):
+        j = api.get_rand_joke()
+        self.add_joke(j)
+        next_cat = self.get_next_cat()
+        j_text = self.retrieve_joke(next_cat)
+        return (next_cat, j_text)
 
     ## This returns the next joke category based on preference values and if
     ## jokes in that category are available
