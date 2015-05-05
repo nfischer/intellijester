@@ -61,9 +61,9 @@ fi
 echo "Installing unirest module"
 pip install unirest || fail unirest $LINENO
 
-# Install gi module
-echo "Installing gi module"
-pip install gi || fail gi $LINENO
+# # Install gi module
+# echo "Installing gi module"
+# pip install gi || fail gi $LINENO
 
 # Install pyglet module
 echo "Installing pyglet module"

@@ -13,7 +13,6 @@ Installation
 You'll need to have the following python modules installed:
 
  - unirest
- - gi
  - pyglet
  - qt4
 
