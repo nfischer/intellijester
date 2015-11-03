@@ -26,7 +26,7 @@ def get_rand_joke():
 
 def get_joke_type(cat, count, word):
     # These code snippets use an open-source library.
-    url = os.path.join(URL_BASE, "search?category="+cat+"&keywords="+word+"&minRating=9&numJokes="+str(count) )
+    url = os.path.join(URL_BASE, "search?category="+cat+"&keywords="+word+"&minRating=9&numJokes="+str(count))
     response = unirest.get(url, headers={"X-Mashape-Key": MASHAPE_KEY, "Accept": "application/json"})
     if response.code != 200:
         # Request failed

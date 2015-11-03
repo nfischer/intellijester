@@ -2,13 +2,10 @@
 Functions for downloading and playing mp3 files that read jokes out loud
 """
 
-# import time
 import os
 import pyglet
-# import pygame
 import urllib2
 import urllib
-# from multiprocessing import Pool
 
 # Constants
 MP3_FILE_NAME = "joke.mp3"
@@ -22,7 +19,7 @@ def getMp3(input_text):
     audio = urllib2.urlopen(req) # This line has the most latency
     data = audio.read()
 
-    with open(MP3_FILE_NAME,"wb") as f:
+    with open(MP3_FILE_NAME, "wb") as f:
         f.write(data)
 
 def unlinkMp3():

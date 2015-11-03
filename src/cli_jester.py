@@ -9,7 +9,6 @@ necessary to base functionality should be in external files.
 
 import os
 import sys
-import api
 import threading
 import time
 
@@ -52,7 +51,7 @@ def matches(a, b):
     return a == b
 
 def usage():
-    HELP_MSG="""
+    HELP_MSG = """
 intellijester command prompt options:
 
 quit                             This quits the application cleanly
@@ -86,50 +85,28 @@ def main(joke_bag):
     try:
         while True:
             # text = raw_input("\nPress enter to see a joke, q to quit: ")
-            key_list = []
             key = ""
-            # if text != "":
-            #     key_list = text.split()
-            #     key = key_list[0]
 
-            if matches(key,"quit") or key == "Q" or key == ";q" or key == "exit":
+            if matches(key, "quit") or key == "Q" or key == ";q" or key == "exit":
                 killProgram()
-            elif matches(key,"help") or key == "--help":
+            elif matches(key, "help") or key == "--help":
                 usage()
-            elif matches(key,"clear") or key == "cls":
+            elif matches(key, "clear") or key == "cls":
                 os.system('clear')
-            elif matches(key,"keys"):
+            elif matches(key, "keys"):
                 print joke_bag.cat_map.keys()
             else:
                 while True:
                     try:
-                        # j = api.get_rand_joke()
-                        # joke_bag.add_joke(j)
-                        # next_cat = joke_bag.get_next_cat()
-                        # j_text = joke_bag.retrieve_joke(next_cat)
                         next_cat, j_text = joke_bag.get_joke_wrapper()
-                        # j_text = j_text.encode('ascii', 'strict')
                         # Check for ascii
                         if not is_ascii(j_text):
                             j_text = j_text.replace(UNICODE_APOST, "'")
                             if not is_ascii(j_text):
                                 continue
-                        # try:
-                        #     j_text.decode('ascii')
-                        # except UnicodeDecodeError:
-                        #     print "Not ascii: " % j_text[0:20]
-                        #     continue # This is a non-ascii string
 
                         os.system('clear')
                         print j_text
-
-                        # print "Pulling mp3"
-                        # mp3.getMp3(j_text)
-                        # print "got mp3"
-                        # mp3.playMp3()
-                        # print "Played mp3"
-                        # mp3.unlinkMp3()
-                        # print "Cleaned up"
 
                         # Play mp3
                         mp3.read_joke(j_text)
@@ -179,8 +156,8 @@ if __name__ == "__main__":
 
 
     my_threads = list()
-    my_threads.append(threading.Thread(target=eeg.listen_to_process) )
-    my_threads.append(threading.Thread(target=main, args=(joke_bag,) ) )
+    my_threads.append(threading.Thread(target=eeg.listen_to_process))
+    my_threads.append(threading.Thread(target=main, args=(joke_bag,)))
     my_threads[0].daemon = True # run this thread in the background
     my_threads[1].daemon = False
     my_threads[0].start()

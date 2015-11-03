@@ -11,7 +11,7 @@ if sys.platform[:5] == "linux":
 else:
     EXECUTE_JAR = "java -jar eeg/target/intelligester-1.0.jar"
 
-class EEG:
+class EEG(object):
     def __init__(self):
         # Start the JAR file
         self.p = Popen(EXECUTE_JAR.split(), stdout=PIPE, bufsize=0)
@@ -27,7 +27,7 @@ class EEG:
 
     def user_likes_joke(self):
         # Check the current value in the stream
-        return (self.val == 1) # must be read-only
+        return self.val == 1 # must be read-only
 
     def kill_process(self):
         # self.p.stdout.close()

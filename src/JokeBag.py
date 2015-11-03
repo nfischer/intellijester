@@ -17,10 +17,10 @@ class JokeTooLong(Exception):
         self.message = message
 
 
-class JokeBag:
+class JokeBag(object):
     def __init__(self):
-        self.cat_map = { }
-        self.score_map = { }
+        self.cat_map = {}
+        self.score_map = {}
 
         # Populate the map with initial values
         for k in STARTING_KEYS:
@@ -32,7 +32,6 @@ class JokeBag:
 
         for k in self.cat_map.keys():
             self.score_map[k] = INITIAL_SCORE # initialize all scores
-            # print k
 
     ## This adds a single joke to the category
     ## @param joke: json dict object
@@ -40,7 +39,7 @@ class JokeBag:
         text = joke["joke"]
         try:
             cat = joke["category"].lower()
-        except:
+        except KeyError:
             cat = "misc"
 
         if len(text) > LENGTH_THRESHOLD:

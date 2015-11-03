@@ -26,21 +26,23 @@ $ sudo ./install.sh
 ### Audio
 
 You will also need to install AVbin from
-`https://avbin.github.io/AVbin/Download.html`
+[https://avbin.github.io/AVbin/Download.html](https://avbin.github.io/AVbin/Download.html)
 
 ### Emotiv
 
 You will need to download the control panel in order to interface with the
-EEG. This can be found on `https://emotiv.com/store/product_72.html`
+EEG. This can be found on
+[https://emotiv.com/store/product_72.html](https://emotiv.com/store/product_72.html)
 
 ### Java
 
 The parts of our project that interface with the EEG use Java.
 
-To run the EEG files, you must have maven installed. You can download the
-latest version here: `https://maven.apache.org/download.cgi`. Make sure to
-export it to your path as well. You can verify this step by running the
-command:
+To run the EEG files, you must have maven installed. You can download the latest
+version here:
+[https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi).
+Make sure to export it to your path as well. You can verify this step by running
+the command:
 
 ```Bash
 $ mvn --version.
